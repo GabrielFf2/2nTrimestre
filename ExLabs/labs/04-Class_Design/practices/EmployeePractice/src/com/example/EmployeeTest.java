@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.business.EmployeeStockPlan;
 import com.example.domain.Employee;
 import com.example.domain.Engineer;
 import com.example.domain.Manager;
@@ -20,25 +21,24 @@ public class EmployeeTest {
 
         Director dir = new Director(12, "Susan Wheeler", "099-45-2340", 120_567.36, "Global Marketing", 1_000_000.00);
 
+        EmployeeStockPlan esp = new EmployeeStockPlan();
         // Print information about the objects you created
-        printEmployee(eng);
-        printEmployee(adm);
-        printEmployee(mgr);
-        printEmployee(dir);
+        printEmployee(eng,esp);
+        printEmployee(adm,esp);
+        printEmployee(mgr,esp);
+        printEmployee(dir,esp);
 
         System.out.println("\nTesting raiseSalary and setName on Manager:");
         mgr.setName ("Barbara Johnson-Smythe");
         mgr.raiseSalary(10_000.00);
-        printEmployee(mgr);
+        printEmployee(mgr,esp);
 
     }
 
-    public static void printEmployee(Employee emp) {
-        System.out.println(); // Print a blank line as a separator
-        // Print out the data in this Employee object
-        System.out.println("Employee id:         " + emp.getEmpId());
-        System.out.println("Employee name:       " + emp.getName());
-        System.out.println("Employee Soc Sec #:  " + emp.getSsn());
-        System.out.println("Employee salary:     " + NumberFormat.getCurrencyInstance().format((double) emp.getSalary()));
+    public static void printEmployee(Employee emp , EmployeeStockPlan esp) {
+        System.out.println(emp.toString());
+        System.out.println("Stock Options   " + esp.grantStock(emp));
     }
+
+
 }

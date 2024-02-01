@@ -12,4 +12,7 @@ public class Director extends Manager {
     public double getBudget() {
         return budget;
     }
+    public String toString(){
+        return super.toString() + "\n Budget: " + getBudget();
+    }
 }
