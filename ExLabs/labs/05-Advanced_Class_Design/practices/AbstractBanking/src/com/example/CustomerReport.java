@@ -30,7 +30,7 @@ public class CustomerReport {
 
             // For each account for this customer...
             for (int acct_idx = 0; acct_idx < customer.getNumOfAccounts(); acct_idx++) {
-                TimeDepositAccount account = customer.getAccount(acct_idx);
+                Account account = customer.getAccount(acct_idx);
 
                 // Print the current balance of the account
                 System.out.println("    " + account);

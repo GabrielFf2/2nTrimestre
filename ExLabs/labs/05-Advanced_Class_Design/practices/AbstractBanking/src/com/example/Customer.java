@@ -4,14 +4,14 @@ public class Customer {
 
     private String firstName;
     private String lastName;
-    private TimeDepositAccount[] accounts;
+    private Account[] accounts;
     private int numberOfAccounts;
 
     public Customer(String f, String l) {
         firstName = f;
         lastName = l;
         // initialize accounts array
-        accounts = new TimeDepositAccount[10];
+        accounts = new Account[10];
         numberOfAccounts = 0;
     }
 
@@ -23,7 +23,7 @@ public class Customer {
         return lastName;
     }
 
-    public void addAccount(TimeDepositAccount acct) {
+    public void addAccount(Account acct) {
         int i = numberOfAccounts++;
         accounts[i] = acct;
     }
@@ -32,7 +32,7 @@ public class Customer {
         return numberOfAccounts;
     }
 
-    public TimeDepositAccount getAccount(int account_index) {
+    public Account getAccount(int account_index) {
         return accounts[account_index];
     }
 }
