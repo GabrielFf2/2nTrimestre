@@ -52,7 +52,6 @@ public class Employee {
         return "Employee ID:    " + getEmpId() + "\n" +
                 "Employee Name:    " + getName() + "\n" +
                 "Employee SSN:    " + getSsn() + "\n" +
-                "Employee Salary:    " + getSalary() + "\n" +
-                NumberFormat.getCurrencyInstance().format(getSalary());
+                "Employee Salary:    " + NumberFormat.getCurrencyInstance().format(getSalary()) + "\n" ;
     }
 }
