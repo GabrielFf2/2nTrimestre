@@ -1,5 +1,4 @@
 public class InvestmentFund extends Account {
-
     private double interest;
 
     public InvestmentFund(int accountNumber, Client owner) {

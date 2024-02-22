@@ -1,6 +1,5 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
 public abstract class Account {
 
     protected int accountNumber;

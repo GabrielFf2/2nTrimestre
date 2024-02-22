@@ -1,5 +1,4 @@
 public class Borders {
-
     private static final char VERTICAL_LINE = '║';
     private static final char HORIZONTAL_LINE = '═';
     private static final char TOP_LEFT_CORNER = '╔';

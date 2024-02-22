@@ -1,5 +1,4 @@
 public class ClientExistsException extends Exception {
-
     private Client client;
 
     public ClientExistsException(Client client) {

@@ -1,5 +1,4 @@
 public class CurrentAccount extends Account {
-
     public CurrentAccount(int accountNumber, Client owner) {
         super(accountNumber, 0, owner);
     }

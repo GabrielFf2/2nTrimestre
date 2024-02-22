@@ -1,5 +1,4 @@
 public class MortgageAccount extends Account {
-
     public MortgageAccount(int accountNumber, Client owner) {
         super(accountNumber, 1000, owner);
     }

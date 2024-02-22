@@ -1,7 +1,6 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-
 public class Transaction {
 
     private LocalDateTime dateTime;
