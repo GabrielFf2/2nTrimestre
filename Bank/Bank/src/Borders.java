@@ -15,9 +15,9 @@ public class Borders {
 
     /**
      * Prints a text inside of a rectanble with unicode borders
-     *
+     * 
      * @param text - text included inside the borders
-     *
+     * 
      */
     public static void printTextWithBorders(String text) {
         String[] lines = text.split("\n");

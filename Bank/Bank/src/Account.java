@@ -1,55 +1,73 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class Account {
+public abstract class Account {
 
-    ArrayList<Transaction>transactions = new ArrayList<Transaction>();
-    private static int accountNumberCount = 0;
-    private int accountNumber;
-    private double balance = 0;
-    private Client client ;
+    protected int accountNumber;
+    protected double balance;
+    protected Client owner;
+
+    private ArrayList<Transaction> transactions;
+
+    public Account(int accountNumber, double balance, Client owner) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.owner = owner;
+
+        this.transactions = new ArrayList<Transaction>();
+    }
+
+    public abstract void deposit(double amount) throws InvalidDepositException;
+
+    public abstract void withdraw(double amount) throws InvalidWithdrawException;
+
+    public void confirmDeposit(double amount) {
+        this.balance += amount;
+        this.transactions.add(new Transaction(LocalDateTime.now(), amount, this.balance, TransactionType.DEPOSIT));
+    }
+
+    public void confirmWithdraw(double amount) {
+        this.balance -= amount;
+        this.transactions.add(new Transaction(LocalDateTime.now(), amount, this.balance, TransactionType.WITHDRAWAL));
+    }
+
+    public abstract void viewAccount();
+
+    @Override
+    public String toString() {
+        return "[accountNumber=" + this.accountNumber + ", owner=" + this.owner.fullName() + "]";
+    }
+
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(int accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 
     public double getBalance() {
         return balance;
     }
-    public int getAccountNumber() {
-        return accountNumber;
-    }
-    public void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-    public Client getClient() {
-        return client;
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
-    public void deposit (double amount){
-        balance+=amount;
-        Transaction temp = new Transaction(Transaction.TransactionType.DEPOSIT,amount ,this.balance);
-        transactions.add(temp);
-    }
-    public void whithdraw (double amount){
-        balance-=amount;
-        Transaction temp = new Transaction(Transaction.TransactionType.WITHDRAWAL,amount ,this.balance);
-        transactions.add(temp);
+    public Client getOwner() {
+        return owner;
     }
 
-    public Account(Client client){
-        this.client = client;
-        accountNumber = accountNumberCount;
-        accountNumberCount++;
-    };
-
-    @Override
-    public String toString() {
-        return "Account{" + "accountNumber=" + accountNumber + ", balance=" + balance + ", client=" + client.fullName() + '}';
+    public void setOwner(Client owner) {
+        this.owner = owner;
     }
 
-    public String viewAccount (){
-        String a = "Account{\n AccountNumber=" + accountNumber +" Owner " + client.fullName() +"}";
-        for (Transaction trans:transactions) {
-            a += "\n" + trans.viewTransaction();
+    protected String viewTransactions() {
+        String s = "";
+        for (Transaction transaction : transactions) {
+            s += transaction.toString() + "\n";
         }
-        return a;
+        return s;
     }
 
 }

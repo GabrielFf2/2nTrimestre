@@ -1,28 +1,60 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class Transaction {
 
     private LocalDateTime dateTime;
-    private TransactionType type;
     private double amount;
     private double finalBalance;
-    public static enum TransactionType {
-        DEPOSIT,
-        WITHDRAWAL
+    private TransactionType type;
+
+    public Transaction(LocalDateTime dateTime, double amount, double finalBalance, TransactionType type) {
+        this.dateTime = dateTime;
+        this.amount = amount;
+        this.finalBalance = finalBalance;
+        this.type = type;
     }
 
-    private void setDateTime(){
-        this.dateTime = LocalDateTime.now();
+    @Override
+    public String toString() {
+        return (this.type == TransactionType.DEPOSIT ? "   DEPOSIT" : "WITHDRAWAL")
+                + " [Date = " + this.dateTime.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
+                + ", time = " + this.dateTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM))
+                + ", amount = " + this.amount
+                + ", balance = " + this.finalBalance + "$"
+                + "]";
     }
-    public Transaction(TransactionType type,double amount ,double finalBalance){
-        this.setDateTime();
-        this.type=type;
-        this.amount=amount;
-        this.finalBalance=finalBalance;
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
-    public String viewTransaction(){
-        return type.toString() +"[" + "Date = "+ dateTime.getDayOfMonth() +", Time = "+ dateTime.getHour()+":"+dateTime.getMinute()
-                + ":"+dateTime.getSecond() + ", Amount = "+ this.amount + ", Balance = " + this.finalBalance + "]";
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public double getFinalBalance() {
+        return finalBalance;
+    }
+
+    public void setFinalBalance(double finalBalance) {
+        this.finalBalance = finalBalance;
+    }
+
+    public TransactionType getType() {
+        return type;
+    }
+
+    public void setType(TransactionType type) {
+        this.type = type;
     }
 }
